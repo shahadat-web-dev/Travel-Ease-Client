@@ -1,0 +1,46 @@
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+
+
+import { createBrowserRouter } from "react-router";
+import { RouterProvider } from "react-router/dom";
+import RootLayout from './Layout/RootLayout';
+import Home from './components/home/Home';
+import AllVehicle from './components/AllVehicle/AllVehicle';
+import AuthProvider from './context/AuthProvider';
+import Register from './components/Register/Register';
+import Login from './components/Login/Login';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    Component: RootLayout,
+    children: [
+       {
+        index: true,
+        Component: Home,
+       },
+       {
+         path: 'allVehicle',
+         Component: AllVehicle
+       },
+       {
+        path: 'register',
+        Component: Register
+       },
+       {
+        path: 'login',
+        Component: Login
+       }
+    ]
+  },
+]);
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  </StrictMode>,
+)
