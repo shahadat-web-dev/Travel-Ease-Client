@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router';
+import { NavLink } from 'react-router';
 import logo from '../../assets/logo.png';
 import { AuthContext } from '../../context/AuthContext';
 
@@ -12,7 +12,7 @@ const Navbar = () => {
         <NavLink 
           to="/"
           className={({ isActive }) =>
-            isActive ? "text-[#FF2C3B] font-semibold" : ""
+            isActive ? "text-white font-semibold bg-red-400 " : ""
           }
         >
           Home
@@ -23,7 +23,7 @@ const Navbar = () => {
         <NavLink 
           to="/allVehicle"
           className={({ isActive }) =>
-            isActive ? "text-[#FF2C3B] font-semibold" : ""
+            isActive ? "text-white font-semibold bg-red-400 " : ""
           }
         >
           All Vehicle
@@ -34,7 +34,7 @@ const Navbar = () => {
         <NavLink 
           to="/addVehicle"
           className={({ isActive }) =>
-            isActive ? "text-[#FF2C3B] font-semibold" : ""
+            isActive ? "text-white font-semibold bg-red-400 " : ""
           }
         >
           Add Vehicle
@@ -45,7 +45,7 @@ const Navbar = () => {
         <NavLink 
           to="/myVehicles"
           className={({ isActive }) =>
-            isActive ? "text-[#FF2C3B] font-semibold" : ""
+            isActive ? "text-white font-semibold bg-red-400 " : ""
           }
         >
           My Vehicles
@@ -56,7 +56,7 @@ const Navbar = () => {
         <NavLink 
           to="/myBookings"
           className={({ isActive }) =>
-            isActive ? "text-[#FF2C3B] font-semibold" : ""
+            isActive ? "text-white font-semibold bg-red-400 " : ""
           }
         >
           My Bookings
