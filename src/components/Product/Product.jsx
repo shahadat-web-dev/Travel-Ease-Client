@@ -56,10 +56,9 @@ const Product = ({product}) => {
         
         {/* --- Action Button --- */}
         <button
-          onClick={() => console.log('Renting ' + name)}
-          className="w-full mt-6 py-3 px-4 bg-gray-800 text-white font-semibold rounded-xl shadow-md hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-500/50 transition-colors"
+          className="w-full mt-6 py-3 px-4 text-sm  font-bold rounded-sm border cursor-pointer hover:bg-[#FF2C3B] hover:text-white "
         >
-          Rent now
+          View Details
         </button>
 
       </div>

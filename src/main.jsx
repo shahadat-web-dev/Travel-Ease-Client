@@ -23,6 +23,7 @@ const router = createBrowserRouter([
        },
        {
          path: 'allVehicle',
+         loader: () => fetch('http://localhost:3000/products'),
          Component: AllVehicle
        },
        {
