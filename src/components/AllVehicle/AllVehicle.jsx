@@ -1,10 +1,9 @@
 import React from 'react';
-import { useLoaderData } from 'react-router';
+import { Link, useLoaderData } from 'react-router'; 
 import { FaStar } from "react-icons/fa";
 
 const AllVehicle = () => {
   const products = useLoaderData();
-  console.log(products);
 
   return (
     <div className='container mx-auto'>
@@ -16,20 +15,18 @@ const AllVehicle = () => {
             key={item._id}
             className="max-w-sm mx-auto text-black shadow-xl rounded-2xl overflow-hidden bg-white transition-all duration-300 hover:shadow-2xl"
           >
-
             {/* Image Section */}
             <div className="relative p-4 text-color">
               <img
                 src={item.coverImage}
                 alt={item.vehicleName}
-                className="w-full h-full object-cover transition-transform duration-300 rounded-sm hover:scale-105"
+                className="w-full h-48 object-cover transition-transform duration-300 rounded-sm hover:scale-105"
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src =
                     "https://placehold.co/600x400/222/FFF?text=Car+Image+Missing";
                 }}
               />
-
               <div className="absolute top-8 right-8 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
                 <span className="text-xl font-extrabold text-red-600">
                   ${item.pricePerDay}
@@ -43,9 +40,8 @@ const AllVehicle = () => {
                 <h2 className="text-2xl font-bold text-black leading-snug">
                   {item.vehicleName}
                 </h2>
-
                 <div className="flex items-center space-x-1 ml-4 py-1 px-2 rounded-full text-sm font-semibold border border-gray-300">
-                  <FaStar />
+                  <FaStar className="text-yellow-500" />
                   <span className="text-black">4.8</span>
                 </div>
               </div>
@@ -59,9 +55,13 @@ const AllVehicle = () => {
                 <h4 className="font-bold">Location: {item.location}</h4>
               </div>
 
-              <button className="w-full mt-6 py-3 px-4 text-sm font-bold rounded-sm border cursor-pointer hover:bg-[#FF2C3B] hover:text-color">
+              {/* Fixed View Details Button */}
+              <Link
+                to={`/vehicle-details/${item._id}`}
+                className="block w-full mt-6 py-3 text-center text-sm font-bold rounded border hover:text-white hover:bg-red-600 transition-colors duration-300"
+              >
                 View Details
-              </button>
+              </Link>
             </div>
           </div>
         ))}

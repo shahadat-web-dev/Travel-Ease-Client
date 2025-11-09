@@ -12,6 +12,8 @@ import AuthProvider from './context/AuthProvider';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import { ThemeProvider } from './ThemeContext/ThemeContext';
+import PrivateRoute from './components/provider/PrivateRoute';
+import VehicleDetails from './components/vehicleDetails/VehicleDetails';
 
 
 const router = createBrowserRouter([
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
       {
         path: 'login',
         Component: Login
+      },
+      {
+        path:'/vehicle-details/:id',
+        element: (
+          <PrivateRoute>
+            <VehicleDetails/>
+          </PrivateRoute>
+        )
       }
     ]
   },

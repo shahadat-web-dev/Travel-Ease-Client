@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-@plugin "daisyui" ;
- 
+@plugin "daisyui";
+
 
 [data-theme="light"] {
 
@@ -9,17 +9,30 @@
     background-color: rgb(255, 255, 255);
   }
 
-  .text-color{
+  .text-color {
     color: black;
   }
-};
+
+  .nav-bg {
+    background-color: black;
+  }
+}
+
+;
+
 [data-theme="dark"] {
 
   body {
     background-color: rgb(0, 0, 0);
   }
 
-   .text-color{
-    color: white;
+  .text-color {
+    color: white;
+  }
+
+  .nav-bg {
+    background-color: white;
+  }
 }
-};
+
+;

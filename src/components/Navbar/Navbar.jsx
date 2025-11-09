@@ -69,7 +69,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-base-100 shadow-sm">
+    <div className="background-color shadow-sm">
       <div className="navbar container mx-auto">
 
         {/* Left */}
@@ -83,15 +83,25 @@ const Navbar = () => {
 
             <ul
               tabIndex={-1}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu z-50 menu-sm dropdown-content bg-base-100 rounded-box  mt-3 w-52 p-2 shadow"
             >
               {links}
+               <button
+            onClick={toggleTheme}
+            className="text-2xl p-2 rounded-full border hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
+          >
+            {theme === "light" ? (
+              <MdDarkMode />
+            ) : (
+              <MdLightMode />
+            )}
+          </button>
             </ul>
           </div>
 
           <div className="flex items-center">
-            <img className="w-16 h-16" src={logo} alt="" />
-            <a className="md:text-4xl text-3xl font-extrabold">
+            <img className="md:w-16 md:h-16 h-10" src={logo} alt="" />
+            <a className="md:text-4xl text-2xl font-extrabold">
               Travel<span className="text-[#FF2C3B]">Ease</span>
             </a>
           </div>
@@ -110,7 +120,7 @@ const Navbar = () => {
           {/* REACT ICON THEME TOGGLE */}
           <button
             onClick={toggleTheme}
-            className="text-2xl p-2 rounded-full border hover:bg-gray-200 dark:hover:bg-gray-700"
+            className="text-2xl md:flex hidden p-2 rounded-full border hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
           >
             {theme === "light" ? (
               <MdDarkMode />
@@ -121,32 +131,33 @@ const Navbar = () => {
 
           {/* Auth */}
           {user ? (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center  gap-4">
               <img
                 src={user.photoURL}
                 alt="User"
-                className="w-10 h-10 rounded-full border"
+                className="md:w-10 md:h-10 w-10 h-10 rounded-full border"
               />
 
               <button
                 onClick={signOutUser}
-                className="btn border-2 text-[#FC2B3A] font-bold border-[#FC2B3A] hover:text-color hover:bg-[#FC2B3A]"
+                className="btn border-2 text-[#FC2B3A] font-bold border-[#FC2B3A] hover:text-white hover:bg-[#FC2B3A]"
               >
                 Sign Out
               </button>
+              
             </div>
           ) : (
             <>
               <NavLink
                 to="/login"
-                className="btn border-2 text-[#FC2B3A] font-bold border-[#FC2B3A] hover:text-color hover:bg-[#FC2B3A]"
+                className="btn border-2 text-[#FC2B3A] font-bold border-[#FC2B3A] hover:text-white hover:bg-[#FC2B3A]"
               >
                 Login
               </NavLink>
 
               <NavLink
                 to="/register"
-                className="btn border-2 text-[#FC2B3A] font-bold border-[#FC2B3A] hover:text-color hover:bg-[#FC2B3A]"
+                className="btn border-2 text-[#FC2B3A] font-bold border-[#FC2B3A] hover:text-white hover:bg-[#FC2B3A]"
               >
                 Register
               </NavLink>

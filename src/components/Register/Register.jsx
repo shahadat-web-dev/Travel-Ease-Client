@@ -41,7 +41,7 @@ const Register = () => {
       .then((result) => {
         updateUserProfile(name, photo)
           .then(() => {
-            toast.success('Registered successfully',result);
+            toast.success('Registered successfully', result);
             navigate('/');
           })
           .catch(err => toast.error(err.message));
@@ -127,7 +127,7 @@ const Register = () => {
           {/* Google Login */}
           <button
             onClick={handleGoogleSignin}
-            className="btn mt-5 bg-white border border-gray-300 w-full flex items-center justify-center gap-2"
+            className="btn mt-5 text-black bg-white border border-gray-300 w-full flex items-center justify-center gap-2"
           >
             <svg
               aria-label="Google logo"
