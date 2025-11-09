@@ -3,7 +3,7 @@ import Product from '../Product/Product';
 
 const LatestProducts = ({ LatestProductsPromise }) => {
   const products = use(LatestProductsPromise);
-  console.log(products);
+  // console.log(products);
 
 
   return (
