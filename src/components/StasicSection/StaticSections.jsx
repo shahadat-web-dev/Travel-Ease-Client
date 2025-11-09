@@ -10,22 +10,22 @@ const StaticSections = () => {
         <h2 className="text-2xl font-bold mb-4">Top Categories</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
 
-          <div className="p-5 border rounded-xl flex flex-col items-center">
+          <div className="p-5 bg-white shadow-sm border border-amber-300  rounded-xl flex flex-col items-center">
             <FaCar size={36} />
-            <p className="mt-2 font-semibold">SUV</p>
+            <p className="mt-2 font-bold">SUV</p>
           </div>
 
-          <div className="p-5 border rounded-xl flex flex-col items-center">
+          <div className="p-5 bg-white shadow-sm border border-amber-300  rounded-xl flex flex-col items-center">
             <FaChargingStation size={36} />
             <p className="mt-2 font-semibold">Electric</p>
           </div>
 
-          <div className="p-5 border rounded-xl flex flex-col items-center">
+          <div className="p-5 bg-white shadow-sm border border-amber-300  rounded-xl flex flex-col items-center">
             <FaShuttleVan size={36} />
             <p className="mt-2 font-semibold">Van</p>
           </div>
 
-          <div className="p-5 border rounded-xl flex flex-col items-center">
+          <div className="p-5 bg-white shadow-sm border border-amber-300  rounded-xl flex flex-col items-center">
             <FaMotorcycle size={36} />
             <p className="mt-2 font-semibold">Motorbike</p>
           </div>
@@ -37,7 +37,7 @@ const StaticSections = () => {
       <section>
         <h2 className="text-2xl font-bold mb-4">Featured Owner</h2>
 
-        <div className="border rounded-xl p-6 flex gap-6 items-center">
+        <div className=" rounded-xl p-6 flex gap-6 items-center bg-white shadow-sm border border-amber-300 ">
           <img
             src="https://i.ibb.co/m9T0mwk/profile.jpg"
             alt="Owner"
