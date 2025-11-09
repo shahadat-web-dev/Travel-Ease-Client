@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router';
 
 const Banner = () => {
   return (
@@ -7,9 +8,7 @@ const Banner = () => {
       style={{
         backgroundImage: `url('https://i.ibb.co.com/Pz6VJnyJ/Gemini-Generated-Image-l3hjeul3hjeul3hj-Picsart.png')`,
       }}
-    >
-      {/* Optional Dark overlay */}
-      {/* <div className="absolute inset-0 bg-black bg-opacity-50"></div> */}
+    >     
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col lg:flex-row items-center justify-between">
         {/* Left Side: Text */}
@@ -29,12 +28,11 @@ const Banner = () => {
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-4">
-            <a
-              href="#"
-              className="px-8 py-3 bg-[#FF2C3B] text-white rounded-md text-center font-medium hover:bg-gray-700 transition"
-            >
+            <NavLink
+              to='/allVehicle'
+              className="px-8 py-3 bg-[#FF2C3B] text-white rounded-md text-center font-medium hover:bg-gray-700 transition">
               All Vehicle
-            </a>
+            </NavLink>
           </div>
         </div>
 
@@ -43,7 +41,7 @@ const Banner = () => {
           <img
             src="https://i.ibb.co.com/LTg7c65/1.png"
             alt="Car"
-            className="w-full max-w-md object-contain"
+            className="w-full max-w-md md:max-w-2xl object-contain"
           />
         </div>
       </div>
