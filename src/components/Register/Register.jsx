@@ -1,28 +1,34 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import { useNavigate } from 'react-router';
+import { useNavigate, Link } from 'react-router';
 import toast, { Toaster } from 'react-hot-toast';
 
 const Register = () => {
-  const { createUser, signInWithGoogle } = useContext(AuthContext);
+  const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const [name, setName] = useState('');
+  const [photo, setPhoto] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passError, setPassError] = useState('');
 
+  // Password Validation
   const validatePassword = (password) => {
     if (password.length < 6) {
-      toast.error('Password must be at least 6 characters long');
+      setPassError('Password must be at least 6 characters');
       return false;
     }
     if (!/[A-Z]/.test(password)) {
-      toast.error('Password must contain at least one uppercase letter');
+      setPassError('Must contain at least one uppercase letter');
       return false;
     }
     if (!/[a-z]/.test(password)) {
-      toast.error('Password must contain at least one lowercase letter');
+      setPassError('Must contain at least one lowercase letter');
       return false;
     }
+
+    setPassError('');
     return true;
   };
 
@@ -33,60 +39,95 @@ const Register = () => {
 
     createUser(email, password)
       .then((result) => {
-        toast.success('Registered successfully!',result);
-        navigate('/'); // Redirect to home page
+        updateUserProfile(name, photo)
+          .then(() => {
+            toast.success('Registered successfully',result);
+            navigate('/');
+          })
+          .catch(err => toast.error(err.message));
       })
       .catch((error) => {
         toast.error(error.message);
       });
   };
 
-  const handleGoogleSignIn = () => {
+  const handleGoogleSignin = () => {
     signInWithGoogle()
-      .then((result) => {
-        toast.success('Logged in with Google!',result);
-        navigate('/'); // Redirect to home page
+      .then(() => {
+        toast.success('Logged in with Google');
+        navigate('/');
       })
-      .catch((error) => {
-        toast.error(error.message);
-      });
+      .catch((error) => toast.error(error.message));
   };
 
   return (
     <div>
       <Toaster />
+
       <div className="card bg-base-100 mt-20 mx-auto w-full max-w-sm shadow-2xl">
-        <h1 className="text-4xl text-center pt-5 font-bold">Register now!</h1>
+        <h1 className="text-4xl text-center pt-5 font-bold">Register</h1>
+
         <div className="card-body">
           <form onSubmit={handleRegister}>
+
+            <label className="label">Name</label>
+            <input
+              type="text"
+              className="input input-bordered w-full"
+              placeholder="Your Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+
+            <label className="label">Photo URL</label>
+            <input
+              type="text"
+              className="input input-bordered w-full"
+              placeholder="Photo URL"
+              value={photo}
+              onChange={(e) => setPhoto(e.target.value)}
+              required
+            />
+
             <label className="label">Email</label>
             <input
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               className="input input-bordered w-full"
               placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
 
             <label className="label">Password</label>
             <input
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               className="input input-bordered w-full"
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
+
+            {passError && (
+              <p className="text-red-500 text-sm mt-1">{passError}</p>
+            )}
 
             <button type="submit" className="btn btn-neutral mt-4 w-full">
               Register
             </button>
           </form>
 
+          <p className="text-center mt-2">
+            Already have an account?{" "}
+            <Link to="/login" className="text-blue-600">Login</Link>
+          </p>
+
+          {/* Google Login */}
           <button
-            onClick={handleGoogleSignIn}
-            className="btn mt-5 bg-white text-black border border-gray-300 w-full flex items-center justify-center gap-2"
+            onClick={handleGoogleSignin}
+            className="btn mt-5 bg-white border border-gray-300 w-full flex items-center justify-center gap-2"
           >
             <svg
               aria-label="Google logo"

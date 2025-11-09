@@ -11,37 +11,41 @@ import AllVehicle from './components/AllVehicle/AllVehicle';
 import AuthProvider from './context/AuthProvider';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
+import { ThemeProvider } from './ThemeContext/ThemeContext';
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
     children: [
-       {
+      {
         index: true,
         Component: Home,
-       },
-       {
-         path: 'allVehicle',
-         loader: () => fetch('http://localhost:3000/products'),
-         Component: AllVehicle
-       },
-       {
+      },
+      {
+        path: 'allVehicle',
+        loader: () => fetch('http://localhost:3000/products'),
+        Component: AllVehicle
+      },
+      {
         path: 'register',
         Component: Register
-       },
-       {
+      },
+      {
         path: 'login',
         Component: Login
-       }
+      }
     ]
   },
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </ThemeProvider>
   </StrictMode>,
 )

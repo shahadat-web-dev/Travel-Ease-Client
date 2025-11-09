@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo2.png';
 import { AuthContext } from '../../context/AuthContext';
+import { useTheme } from '../../ThemeContext/ThemeContext';
+import { MdLightMode, MdDarkMode } from "react-icons/md";  // REACT ICONS
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
+  const { theme, toggleTheme } = useTheme();
 
   const links = (
     <>
@@ -12,7 +15,7 @@ const Navbar = () => {
         <NavLink 
           to="/"
           className={({ isActive }) =>
-            isActive ? "text-white font-semibold bg-red-400 " : ""
+            isActive ? "text-white font-semibold bg-red-400" : ""
           }
         >
           Home
@@ -23,7 +26,7 @@ const Navbar = () => {
         <NavLink 
           to="/allVehicle"
           className={({ isActive }) =>
-            isActive ? "text-white font-semibold bg-red-400 " : ""
+            isActive ? "text-white font-semibold bg-red-400" : ""
           }
         >
           All Vehicle
@@ -34,7 +37,7 @@ const Navbar = () => {
         <NavLink 
           to="/addVehicle"
           className={({ isActive }) =>
-            isActive ? "text-white font-semibold bg-red-400 " : ""
+            isActive ? "text-white font-semibold bg-red-400" : ""
           }
         >
           Add Vehicle
@@ -45,7 +48,7 @@ const Navbar = () => {
         <NavLink 
           to="/myVehicles"
           className={({ isActive }) =>
-            isActive ? "text-white font-semibold bg-red-400 " : ""
+            isActive ? "text-white font-semibold bg-red-400" : ""
           }
         >
           My Vehicles
@@ -56,7 +59,7 @@ const Navbar = () => {
         <NavLink 
           to="/myBookings"
           className={({ isActive }) =>
-            isActive ? "text-white font-semibold bg-red-400 " : ""
+            isActive ? "text-white font-semibold bg-red-400" : ""
           }
         >
           My Bookings
@@ -68,7 +71,7 @@ const Navbar = () => {
   return (
     <div className="bg-base-100 shadow-sm">
       <div className="navbar container mx-auto">
-        
+
         {/* Left */}
         <div className="navbar-start">
           <div className="dropdown">
@@ -102,22 +105,32 @@ const Navbar = () => {
         </div>
 
         {/* Right */}
-        <div className="navbar-end flex gap-3">
+        <div className="navbar-end flex gap-4">
 
+          {/* REACT ICON THEME TOGGLE */}
+          <button
+            onClick={toggleTheme}
+            className="text-2xl p-2 rounded-full border hover:bg-gray-200 dark:hover:bg-gray-700"
+          >
+            {theme === "light" ? (
+              <MdDarkMode />
+            ) : (
+              <MdLightMode />
+            )}
+          </button>
+
+          {/* Auth */}
           {user ? (
             <div className="flex items-center gap-4">
-              
-              {/* User Photo */}
               <img
                 src={user.photoURL}
                 alt="User"
                 className="w-10 h-10 rounded-full border"
               />
 
-              {/* Sign Out */}
               <button
                 onClick={signOutUser}
-                className="btn border-2 text-[#FC2B3A] font-bold border-[#FC2B3A] hover:text-white hover:bg-[#FC2B3A]"
+                className="btn border-2 text-[#FC2B3A] font-bold border-[#FC2B3A] hover:text-color hover:bg-[#FC2B3A]"
               >
                 Sign Out
               </button>
@@ -126,14 +139,14 @@ const Navbar = () => {
             <>
               <NavLink
                 to="/login"
-                className="btn border-2 text-[#FC2B3A] font-bold border-[#FC2B3A] hover:text-white hover:bg-[#FC2B3A]"
+                className="btn border-2 text-[#FC2B3A] font-bold border-[#FC2B3A] hover:text-color hover:bg-[#FC2B3A]"
               >
                 Login
               </NavLink>
 
               <NavLink
                 to="/register"
-                className="btn border-2 text-[#FC2B3A] font-bold border-[#FC2B3A] hover:text-white hover:bg-[#FC2B3A]"
+                className="btn border-2 text-[#FC2B3A] font-bold border-[#FC2B3A] hover:text-color hover:bg-[#FC2B3A]"
               >
                 Register
               </NavLink>
