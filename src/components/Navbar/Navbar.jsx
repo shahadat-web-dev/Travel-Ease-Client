@@ -3,7 +3,7 @@ import { NavLink } from 'react-router';
 import logo from '../../assets/logo2.png';
 import { AuthContext } from '../../context/AuthContext';
 import { useTheme } from '../../ThemeContext/ThemeContext';
-import { MdLightMode, MdDarkMode } from "react-icons/md";  // REACT ICONS
+import { MdLightMode, MdDarkMode } from "react-icons/md";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -83,19 +83,17 @@ const Navbar = () => {
 
             <ul
               tabIndex={-1}
-              className="menu z-50 menu-sm dropdown-content bg-base-100 rounded-box  mt-3 w-52 p-2 shadow"
+              className="menu z-50 menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow"
             >
               {links}
-               <button
-            onClick={toggleTheme}
-            className="text-2xl p-2 rounded-full border hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
-          >
-            {theme === "light" ? (
-              <MdDarkMode />
-            ) : (
-              <MdLightMode />
-            )}
-          </button>
+
+              {/* Mobile Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                className="text-2xl p-2 rounded-full border hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
+              >
+                {theme === "light" ? <MdDarkMode /> : <MdLightMode />}
+              </button>
             </ul>
           </div>
 
@@ -115,27 +113,25 @@ const Navbar = () => {
         </div>
 
         {/* Right */}
-        <div className="navbar-end flex md:gap-4 gap-2">
+        <div className="navbar-end flex md:gap-4 gap-1">
 
-          {/* REACT ICON THEME TOGGLE */}
+          {/* Desktop Theme Toggle */}
           <button
             onClick={toggleTheme}
             className="text-2xl md:flex hidden p-2 rounded-full border hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
           >
-            {theme === "light" ? (
-              <MdDarkMode />
-            ) : (
-              <MdLightMode />
-            )}
+            {theme === "light" ? <MdDarkMode /> : <MdLightMode />}
           </button>
 
           {/* Auth */}
           {user ? (
-            <div className="flex items-center  gap-4">
+            <div className="flex items-center gap-4">
+              {/* User photo + displayName (hover) */}
               <img
                 src={user.photoURL}
                 alt="User"
-                className="md:w-10 md:h-10 w-10 h-10 rounded-full border"
+                title={user.displayName}
+                className="md:w-10 md:h-10 w-10 h-10 rounded-full border cursor-pointer"
               />
 
               <button
@@ -144,20 +140,19 @@ const Navbar = () => {
               >
                 Sign Out
               </button>
-              
             </div>
           ) : (
             <>
               <NavLink
                 to="/login"
-                className="btn border-2 text-[#FC2B3A] font-bold border-[#FC2B3A] hover:text-white hover:bg-[#FC2B3A]"
+                className="btn border-2 text-[#FC2B3A] font-bold border-[#FC2B3A] p-2 hover:text-white hover:bg-[#FC2B3A]"
               >
                 Login
               </NavLink>
 
               <NavLink
                 to="/register"
-                className="btn border-2 text-[#FC2B3A] font-bold border-[#FC2B3A] hover:text-white hover:bg-[#FC2B3A]"
+                className="btn border-2 text-[#FC2B3A] font-bold border-[#FC2B3A] p-2 hover:text-white hover:bg-[#FC2B3A]"
               >
                 Register
               </NavLink>
