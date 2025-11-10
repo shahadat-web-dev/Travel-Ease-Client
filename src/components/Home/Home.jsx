@@ -2,9 +2,10 @@ import React, { Suspense } from 'react';
 import Banner from '../Banner/Banner';
 import LatestProducts from '../LatestProducts/LatestProducts';
 import StaticSections from '../StasicSection/StaticSections';
+import { Helmet } from 'react-helmet-async';
 
-const LatestProductsPromise = fetch('http://localhost:3000/latest-products')
-.then(res => res.json());
+const LatestProductsPromise = fetch(`${import.meta.env.VITE_API_URL}/latest-products`)
+  .then(res => res.json());
 
 const Home = () => {
   return (

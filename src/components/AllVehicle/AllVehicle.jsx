@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router'; 
 import { FaStar } from "react-icons/fa";
+import { Helmet } from 'react-helmet-async';
 
 const AllVehicle = () => {
   const products = useLoaderData();
 
   return (
     <div className='container mx-auto'>
+       <Helmet>
+        <title>All Vehicle - TraverEase</title>
+      </Helmet>
       <h1 className='text-5xl font-bold text-center pt-15 pb-10'>All Vehicle</h1>
       <div className="min-h-screen py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 

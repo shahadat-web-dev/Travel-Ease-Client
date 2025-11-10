@@ -2,11 +2,11 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 
-
+import { HelmetProvider } from "react-helmet-async";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import RootLayout from './Layout/RootLayout';
-import Home from './components/home/Home';
+import Home from './components/Home/Home';
 import AllVehicle from './components/AllVehicle/AllVehicle';
 import AuthProvider from './context/AuthProvider';
 import Register from './components/Register/Register';
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'allVehicle',
-        loader: () => fetch('http://localhost:3000/products'),
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/products`),
         Component: AllVehicle
       },
       {
@@ -39,10 +39,10 @@ const router = createBrowserRouter([
         Component: Login
       },
       {
-        path:'/vehicle-details/:id',
+        path: '/vehicle-details/:id',
         element: (
           <PrivateRoute>
-            <VehicleDetails/>
+            <VehicleDetails />
           </PrivateRoute>
         )
       }
@@ -53,9 +53,11 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider>
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>
+      <HelmetProvider>
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
+      </HelmetProvider>
     </ThemeProvider>
   </StrictMode>,
 )
