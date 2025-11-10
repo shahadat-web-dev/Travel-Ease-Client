@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router";
 
 const VehicleDetails = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [vehicle, setVehicle] = useState(null);
 
   useEffect(() => {
@@ -17,7 +18,9 @@ const VehicleDetails = () => {
 
   return (
     <div className="max-w-3xl mx-auto mt-10 bg-white shadow-xl p-6 rounded-xl">
-      
+      <Helmet>
+        <title>Vehicle-Details - TraverEase</title>
+      </Helmet>
       <img
         src={vehicle.coverImage}
         alt={vehicle.vehicleName}

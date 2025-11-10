@@ -115,7 +115,7 @@ const Navbar = () => {
         </div>
 
         {/* Right */}
-        <div className="navbar-end flex gap-4">
+        <div className="navbar-end flex md:gap-4 gap-2">
 
           {/* REACT ICON THEME TOGGLE */}
           <button

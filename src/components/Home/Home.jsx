@@ -12,7 +12,7 @@ const Home = () => {
     <div>
       <Banner></Banner>
       <div>
-        <Suspense fallback={<div>
+        <Suspense fallback={<div className='flex justify-center pt-10'>
           <progress className="progress w-56"></progress>
         </div>}>
           <LatestProducts LatestProductsPromise={LatestProductsPromise}></LatestProducts>
