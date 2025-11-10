@@ -34,16 +34,16 @@ const Product = ({ product }) => {
         <p className="text-black text-sm">{description}</p>
 
         <div className="border-t border-gray-200 pt-4 space-y-1 text-sm">
-          <p>Owner: {owner}</p>
-          <p>Category: {category}</p>
-          <p>Available: {availability}</p>
-          <p>Location: {location}</p>
+          <p className='text-black'>Owner: {owner}</p>
+          <p className='text-black'>Category: {category}</p>
+          <p className='text-black'>Available: {availability}</p>
+          <p className='text-black'>Location: {location}</p>
         </div>
 
-        {/* --- Fixed View Details Button --- */}
+        
         <Link
           to={`/vehicle-details/${product._id}`}
-          className="block w-full text-center mt-4 py-3 border hover:text-white font-bold rounded hover:bg-red-600 transition-colors duration-300"
+          className="block text-black w-full text-center mt-4 py-3 border hover:text-white font-bold rounded hover:bg-red-600 transition-colors duration-300"
         >
           View Details
         </Link>
