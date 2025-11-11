@@ -14,6 +14,10 @@ import Login from './components/Login/Login';
 import { ThemeProvider } from './ThemeContext/ThemeContext';
 import PrivateRoute from './components/provider/PrivateRoute';
 import VehicleDetails from './components/vehicleDetails/VehicleDetails';
+import MyBookings from './Pages/MyBookings';
+import AddVehicle from './components/AddVehicle/AddVehicle';
+import MyVehicles from './components/MyVehicles/MyVehicles';
+import UpdateVehicle from './components/UpdateVehicle/UpdateVehicle';
 
 
 const router = createBrowserRouter([
@@ -37,6 +41,24 @@ const router = createBrowserRouter([
       {
         path: 'login',
         Component: Login
+      },
+      {
+          path: '/booking/:id',
+          Component: MyBookings
+      },
+      {
+          path: 'addVehicel',
+          Component: AddVehicle
+      },
+      {
+        path: 'myVehicel',
+        Component: MyVehicles
+      },
+      {
+        path: 'updateVehicle/:id',
+        element: <UpdateVehicle/>,
+        loader: ({params}) =>
+          fetch(`https://travel-ease-server-chi.vercel.app/vehicles/${params.id}`)
       },
       {
         path: '/vehicle-details/:id',
