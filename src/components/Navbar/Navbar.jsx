@@ -57,7 +57,7 @@ const Navbar = () => {
 
       <li>
         <NavLink 
-          to="/booking/:id"
+          to="mybooking"
           className={({ isActive }) =>
             isActive ? "text-white font-semibold bg-red-400" : ""
           }

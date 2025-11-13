@@ -2,21 +2,33 @@ import React, { useEffect, useState, useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useParams, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
+import axios from "axios";
 
 const VehicleDetails = () => {
   const { id } = useParams();
   const [vehicle, setVehicle] = useState(null);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/products/${id}`)
-      .then(res => res.json())
-      .then(data => setVehicle(data))
-      .catch(err => console.error(err));
+    axios
+      .get(`http://localhost:3000/products/${id}`)
+      .then((res) => {
+        setVehicle(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch vehicle:", err);
+        setLoading(false);
+      });
   }, [id]);
 
-  if (!vehicle) return <div className="text-center mt-20 text-xl">Loading...</div>;
+  if (loading)
+    return <div className="text-center mt-20 text-xl">Loading...</div>;
+
+  if (!vehicle)
+    return <div className="text-center mt-20 text-xl">Vehicle not found!</div>;
 
   const handleBookNow = async () => {
     if (!user) {
@@ -33,34 +45,40 @@ const VehicleDetails = () => {
       location: vehicle.location,
       pricePerDay: vehicle.pricePerDay,
       bookingDate: new Date().toISOString(),
-      coverImage: vehicle.coverImage
+      coverImage: vehicle.coverImage,
     };
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/bookings`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bookingData)
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/bookings`,
+        bookingData,
+        { headers: { "Content-Type": "application/json" } }
+      );
 
-      const data = await res.json();
-
-      if (res.ok) {
-        alert("Booking successful!");
-        navigate("/myBookings");
-      } else {
-        alert(data.error || "Failed to book. Please try again.");
-      }
+      console.log("Booking response:", res.data);
+      alert("Booking successful!");
+      navigate("/mybooking");
     } catch (err) {
-      console.error(err);
-      alert("Network or server error occurred while booking.");
+      console.error("Axios error:", err.response || err);
+
+      if (err.response) {
+        alert(err.response.data.error || "Failed to book. Please try again.");
+      } else {
+        alert("Network or server error occurred while booking.");
+      }
     }
   };
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 bg-white shadow-xl p-6 rounded-xl">
-      <Helmet><title>Vehicle-Details - TravelEase</title></Helmet>
-      <img src={vehicle.coverImage} alt={vehicle.vehicleName} className="w-full h-72 object-cover rounded-lg" />
+    <div className="max-w-3xl  mx-auto mt-10 bg-white shadow-xl p-6 rounded-xl">
+      <Helmet>
+        <title>Vehicle-Details - TravelEase</title>
+      </Helmet>
+      <img
+        src={vehicle.coverImage}
+        alt={vehicle.vehicleName}
+        className="w-full h-72 object-cover rounded-lg"
+      />
       <h1 className="text-3xl font-bold mt-5">{vehicle.vehicleName}</h1>
       <p className="mt-2 text-gray-700">{vehicle.description}</p>
 
@@ -71,10 +89,9 @@ const VehicleDetails = () => {
         <p><b>Location:</b> {vehicle.location}</p>
         <p><b>Price Per Day:</b> ${vehicle.pricePerDay}</p>
       </div>
-
       <button
         onClick={handleBookNow}
-        className="w-full mt-6 py-3 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition"
+        className="w-full mt-6 cursor-pointer py-3 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition"
       >
         Book Now
       </button>

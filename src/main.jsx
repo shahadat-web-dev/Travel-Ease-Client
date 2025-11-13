@@ -18,6 +18,7 @@ import MyBookings from './Pages/MyBookings';
 import AddVehicle from './components/AddVehicle/AddVehicle';
 import MyVehicles from './components/MyVehicles/MyVehicles';
 import UpdateVehicle from './components/UpdateVehicle/UpdateVehicle';
+import NotFound from './components/NotFound/NotFound';
 
 
 const router = createBrowserRouter([
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'allVehicle',
-        loader: () => fetch(`${import.meta.env.VITE_API_URL}/products`),
+        loader: () => fetch("http://localhost:3000/products"),
         Component: AllVehicle
       },
       {
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
         Component: Login
       },
       {
-          path: '/booking/:id',
+          path: 'mybooking',
           Component: MyBookings
       },
       {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
             <VehicleDetails />
           </PrivateRoute>
         )
+      },
+      {
+        path: '*',
+        element:<NotFound/>
       }
     ]
   },

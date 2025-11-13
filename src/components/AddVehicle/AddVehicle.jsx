@@ -21,7 +21,8 @@ const AddVehicle = () => {
       ownerEmail: user?.email,
     };
 
-    fetch("http://localhost:3000/vehicles", {
+    // ✅ Use correct deployed API URL
+    fetch(`${import.meta.env.VITE_API_URL}/vehicles`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(vehicle),
@@ -102,14 +103,14 @@ const AddVehicle = () => {
         />
 
         <input
-          value={user?.email}
+          value={user?.email || ""}
           disabled
-          className="w-full border p-2 rounded bg-gray-200"
+          className="w-full border p-2 rounded text-black bg-gray-200"
         />
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white font-semibold py-2 rounded"
+          className="w-full cursor-pointer bg-[#FF6467] text-white font-semibold py-2 rounded"
         >
           Add Vehicle
         </button>

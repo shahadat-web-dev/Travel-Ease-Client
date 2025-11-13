@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router";
 import toast from "react-hot-toast";
 
 const UpdateVehicle = () => {
-  const vehicle = useLoaderData(); 
+  const vehicle = useLoaderData();
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -20,7 +20,7 @@ const UpdateVehicle = () => {
       coverImage: form.coverImage.value,
     };
 
-    fetch(`http://localhost:3000/vehicles/${vehicle._id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/vehicles/${vehicle._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedVehicle),

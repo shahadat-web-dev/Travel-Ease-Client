@@ -10,7 +10,7 @@ const MyVehicles = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/vehicles?email=${user.email}`)
+    fetch(`${import.meta.env.VITE_API_URL}/vehicles?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setVehicles(data))
       .catch(() => toast.error("Failed to load vehicles"));
@@ -20,12 +20,12 @@ const MyVehicles = () => {
     const confirmDelete = confirm("Are you sure you want to delete this vehicle?");
     if (!confirmDelete) return;
 
-    fetch(`http://localhost:3000/vehicles/${id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/vehicles/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .then(() => {
-        setVehicles(vehicles.filter((v) => v._id !== id));
+        setVehicles((prev) => prev.filter((v) => v._id !== id));
         toast.success("Vehicle deleted successfully!");
       })
       .catch(() => toast.error("Delete failed"));

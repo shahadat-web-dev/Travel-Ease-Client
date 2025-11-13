@@ -6,7 +6,7 @@ const Product = ({ product }) => {
   const { vehicleName, owner, category, pricePerDay, location, availability, coverImage, description } = product;
 
   return (
-    <div className="max-w-sm mx-auto bg-white my-10 shadow-xl rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+    <div className=" gap-4 bg-white my-10 shadow-xl rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
       {/* --- Image and Price Badge --- */}
       <div className="relative p-4 bg-gray-100">
         <img
