@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import toast from "react-hot-toast";
+import { toast, ToastContainer } from "react-toastify";
+
 
 const AddVehicle = () => {
   const { user } = useContext(AuthContext);
@@ -22,7 +23,7 @@ const AddVehicle = () => {
     };
 
     // ✅ Use correct deployed API URL
-    fetch(`${import.meta.env.VITE_API_URL}/vehicles`, {
+    fetch("http://localhost:3000/vehicles", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(vehicle),
@@ -115,6 +116,7 @@ const AddVehicle = () => {
           Add Vehicle
         </button>
       </form>
+      <ToastContainer/>
     </div>
   );
 };

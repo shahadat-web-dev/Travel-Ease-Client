@@ -1,14 +1,16 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Helmet } from "react-helmet-async";
-import { useParams, useNavigate } from "react-router";
+import { useParams, } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+
 
 const VehicleDetails = () => {
   const { id } = useParams();
   const [vehicle, setVehicle] = useState(null);
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,7 +34,6 @@ const VehicleDetails = () => {
 
   const handleBookNow = async () => {
     if (!user) {
-      alert("Please log in to book this vehicle.");
       return;
     }
 
@@ -50,14 +51,13 @@ const VehicleDetails = () => {
 
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/bookings`,
+        `http://localhost:3000/bookings`,
         bookingData,
         { headers: { "Content-Type": "application/json" } }
       );
 
       console.log("Booking response:", res.data);
-      alert("Booking successful!");
-      navigate("/mybooking");
+      toast("Booking Successfully ✅");
     } catch (err) {
       console.error("Axios error:", err.response || err);
 
@@ -91,10 +91,11 @@ const VehicleDetails = () => {
       </div>
       <button
         onClick={handleBookNow}
-        className="w-full mt-6 cursor-pointer py-3 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition"
+        className="w-full mt-6 cursor-pointer py-3 border-2 text-black  font-bold rounded-sm hover:text-white hover:bg-red-600"
       >
         Book Now
       </button>
+        <ToastContainer />
     </div>
   );
 };
