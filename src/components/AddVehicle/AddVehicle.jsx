@@ -20,6 +20,7 @@ const AddVehicle = () => {
       description: form.description.value,
       coverImage: form.coverImage.value,
       ownerEmail: user?.email,
+      createdAt: new Date()
     };
 
     // ✅ Use correct deployed API URL
@@ -116,7 +117,7 @@ const AddVehicle = () => {
           Add Vehicle
         </button>
       </form>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

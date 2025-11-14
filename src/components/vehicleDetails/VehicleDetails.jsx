@@ -95,7 +95,7 @@ const VehicleDetails = () => {
       >
         Book Now
       </button>
-        <ToastContainer />
+        <ToastContainer position="top-center" />
     </div>
   );
 };

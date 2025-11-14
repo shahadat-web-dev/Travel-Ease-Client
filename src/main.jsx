@@ -45,7 +45,11 @@ const router = createBrowserRouter([
       },
       {
           path: 'mybooking',
-          Component: MyBookings
+          element: [
+            <PrivateRoute>
+              <MyBookings></MyBookings>
+            </PrivateRoute>
+          ]
       },
       {
           path: 'addVehicel',
@@ -56,10 +60,10 @@ const router = createBrowserRouter([
         Component: MyVehicles
       },
       {
-        path: 'updateVehicle/:id',
+        path: 'update-vehicle/:id',
         element: <UpdateVehicle/>,
         loader: ({params}) =>
-          fetch(`https://travel-ease-server-chi.vercel.app/vehicles/${params.id}`)
+          fetch(`http://localhost:3000/vehicles/${params.id}`)
       },
       {
         path: '/vehicle-details/:id',
