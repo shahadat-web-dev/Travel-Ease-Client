@@ -19,6 +19,7 @@ import AddVehicle from './components/AddVehicle/AddVehicle';
 import MyVehicles from './components/MyVehicles/MyVehicles';
 import UpdateVehicle from './components/UpdateVehicle/UpdateVehicle';
 import NotFound from './components/NotFound/NotFound';
+import Details from './components/Details/Details';
 
 
 const router = createBrowserRouter([
@@ -44,16 +45,16 @@ const router = createBrowserRouter([
         Component: Login
       },
       {
-          path: 'mybooking',
-          element: [
-            <PrivateRoute>
-              <MyBookings></MyBookings>
-            </PrivateRoute>
-          ]
+        path: 'mybooking',
+        element: [
+          <PrivateRoute>
+            <MyBookings></MyBookings>
+          </PrivateRoute>
+        ]
       },
       {
-          path: 'addVehicel',
-          Component: AddVehicle
+        path: 'addVehicel',
+        Component: AddVehicle
       },
       {
         path: 'myVehicel',
@@ -61,9 +62,15 @@ const router = createBrowserRouter([
       },
       {
         path: 'update-vehicle/:id',
-        element: <UpdateVehicle/>,
-        loader: ({params}) =>
+        element: <UpdateVehicle />,
+        loader: ({ params }) =>
           fetch(`http://localhost:3000/vehicles/${params.id}`)
+      },
+      {
+        path: '/details/:id',
+        element: <Details />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/vehicles/${params.id}`),
       },
       {
         path: '/vehicle-details/:id',
@@ -75,7 +82,7 @@ const router = createBrowserRouter([
       },
       {
         path: '*',
-        element:<NotFound/>
+        element: <NotFound />
       }
     ]
   },

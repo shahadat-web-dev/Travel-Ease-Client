@@ -1,6 +1,7 @@
 import React from "react";
 import { useLoaderData } from "react-router";
-import toast from "react-hot-toast";
+
+import { toast, ToastContainer } from "react-toastify";
 
 const UpdateVehicle = () => {
   const vehicle = useLoaderData();
@@ -20,8 +21,8 @@ const UpdateVehicle = () => {
       coverImage: form.coverImage.value,
     };
 
-    fetch(`${import.meta.env.VITE_API_URL}/vehicles/${vehicle._id}`, {
-      method: "PUT",
+    fetch(`http://localhost:3000/vehicles/${vehicle._id}`, {
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedVehicle),
     })
@@ -31,6 +32,7 @@ const UpdateVehicle = () => {
       })
       .catch(() => toast.error("Update failed"));
   };
+  
 
   return (
     <div className="min-h-screen p-6">
@@ -105,11 +107,12 @@ const UpdateVehicle = () => {
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white font-semibold py-2 rounded"
+          className="w-full border-2 cursor-pointer hover:bg-blue-600 hover:text-white font-semibold py-2 rounded"
         >
           Update Vehicle
         </button>
       </form>
+      <ToastContainer/>
     </div>
   );
 };

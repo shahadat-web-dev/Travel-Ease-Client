@@ -78,15 +78,21 @@ const MyVehicles = () => {
               
 
                 <Link
+                  to={`/details/${vehicle._id}`}
+                  className="px-3 py-1 hover:bg-blue-600 hover:text-white  font-bold rounded-sm border-2"
+                >
+                  view
+                </Link>
+                <Link
                   to={`/update-vehicle/${vehicle._id}`}
-                  className="px-3 py-1 bg-blue-600 text-white rounded"
+                  className="px-3 py-1 hover:bg-green-600 hover:text-white rounded-sm border-2 font-bold"
                 >
                   Update
                 </Link>
 
                 <button
                   onClick={() => handleDelete(vehicle._id)}
-                  className="px-3 cursor-pointer py-1 bg-red-600 text-white rounded"
+                  className="px-3 cursor-pointer py-1 hover:bg-red-600 border-2 font-bold hover:text-white rounded"
                 >
                   Delete
                 </button>
