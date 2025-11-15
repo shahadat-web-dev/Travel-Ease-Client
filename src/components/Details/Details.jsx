@@ -11,24 +11,24 @@ const Details = () => {
         Details
       </h2>
 
-      <div className="max-w-xl mx-auto border p-4 rounded-lg shadow bg-white">
+      <div className="max-w-xl mx-auto border p-4 rounded-lg shadow-2xl bg-white">
         <img
           src={vehicle.coverImage}
           alt={vehicle.name}
           className="w-full h-60 object-cover rounded"
         />
 
-        <h3 className="text-xl font-bold mt-3">{vehicle.name}</h3>
-        <p className="text-gray-600">Owner: {vehicle.owner}</p>
-        <p className="text-gray-600">Category: {vehicle.category}</p>
-        <p className="text-gray-600">Location: {vehicle.location}</p>
+        <h3 className="text-xl text-black font-bold mt-3">{vehicle.name}</h3>
+        <p className="text-black">Owner: {vehicle.owner}</p>
+        <p className="text-black">Category: {vehicle.category}</p>
+        <p className="text-black">Location: {vehicle.location}</p>
 
-        <p className="mt-2 font-semibold">
+        <p className="mt-2 text-black font-semibold">
           Price Per Day: ${vehicle.pricePerDay}
         </p>
 
-        <p className="mt-2">
-          <span className="font-bold">Availability:</span>{" "}
+        <p className="mt-2 text-black">
+          <span className="font-bold ">Availability:</span>{""}
           {vehicle.availability}
         </p>
 

@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <div>
       <Banner />
-       <h1 className='text-center pt-10 md:text-4xl font-bold'>Latest Products</h1>
+       <h1 className='text-center text-2xl pt-10 md:text-4xl font-bold'>Latest Products</h1>
       <Suspense 
       fallback={<div className='flex justify-center pt-10'>
         <progress className="progress w-56"></progress>

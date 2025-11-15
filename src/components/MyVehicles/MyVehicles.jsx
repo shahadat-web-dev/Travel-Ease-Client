@@ -68,9 +68,9 @@ const MyVehicles = () => {
                 className="w-full h-40 object-cover rounded"
               />
 
-              <h3 className="text-lg font-bold mt-3">{vehicle.name}</h3>
-              <p className="text-sm text-gray-600">{vehicle.category}</p>
-              <p className="font-semibold mt-1">
+              <h3 className="text-lg text-black font-bold mt-3">{vehicle.name}</h3>
+              <p className="text-sm text-black">{vehicle.category}</p>
+              <p className="font-semibold text-black mt-1">
                 ${vehicle.pricePerDay} / {format(new Date(), "dd-MM-yyyy")}
               </p>
 
@@ -79,20 +79,20 @@ const MyVehicles = () => {
 
                 <Link
                   to={`/details/${vehicle._id}`}
-                  className="px-3 py-1 hover:bg-blue-600 hover:text-white  font-bold rounded-sm border-2"
+                  className="px-3 py-1 hover:bg-blue-600 hover:text-white text-black  font-bold rounded-sm border-2"
                 >
                   view
                 </Link>
                 <Link
                   to={`/update-vehicle/${vehicle._id}`}
-                  className="px-3 py-1 hover:bg-green-600 hover:text-white rounded-sm border-2 font-bold"
+                  className="px-3 py-1 hover:bg-green-600 hover:text-white text-black rounded-sm border-2 font-bold"
                 >
                   Update
                 </Link>
 
                 <button
                   onClick={() => handleDelete(vehicle._id)}
-                  className="px-3 cursor-pointer py-1 hover:bg-red-600 border-2 font-bold hover:text-white rounded"
+                  className="px-3 cursor-pointer py-1 hover:bg-red-600 border-2 font-bold hover:text-white text-black rounded"
                 >
                   Delete
                 </button>

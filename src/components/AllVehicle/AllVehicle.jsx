@@ -22,7 +22,7 @@ const AllVehicle = () => {
           No vehicles found.
         </div>
       ) : (
-        <div className="min-h-screen py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="min-h-screen px-4 py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {productArray.map((item) => (
             <div
               key={item._id}

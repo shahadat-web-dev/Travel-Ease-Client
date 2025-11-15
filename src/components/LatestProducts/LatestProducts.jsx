@@ -8,7 +8,7 @@ const LatestProducts = ({ latestProductsPromise }) => {
   return (
     <div>
      
-      <div className='grid gap-5 grid-cols-1 md:grid-cols-3 container mx-auto'>
+      <div className='grid px-4 gap-5 grid-cols-1 md:grid-cols-3 container mx-auto'>
         {
           products.map(product =>
             <Product
