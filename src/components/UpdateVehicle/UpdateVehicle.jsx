@@ -107,7 +107,7 @@ const UpdateVehicle = () => {
 
         <button
           type="submit"
-          className="w-full border-2 cursor-pointer hover:bg-blue-600  hover:text-white font-semibold py-2 rounded"
+          className="w-full border-2 cursor-pointer hover:bg-red-600  hover:text-white font-semibold py-2 rounded"
         >
           Update Vehicle
         </button>

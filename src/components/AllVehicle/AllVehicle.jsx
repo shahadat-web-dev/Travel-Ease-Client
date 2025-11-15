@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link, useLoaderData } from 'react-router';
 import { FaStar } from "react-icons/fa";
 import { Helmet } from 'react-helmet-async';
@@ -9,6 +9,43 @@ const AllVehicle = () => {
   // Safety: ensure products is always an array
   const productArray = Array.isArray(products) ? products : [];
 
+  // ============================
+  // Added Filter + Sort States
+  // ============================
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [locationFilter, setLocationFilter] = useState("");
+  const [priceSort, setPriceSort] = useState("");
+
+  // Create distinct values for dropdowns
+  const categories = [...new Set(productArray.map(p => p.category))];
+  const locations = [...new Set(productArray.map(p => p.location))];
+
+  // ============================
+  // Filtering & Sorting Logic
+  // ============================
+  const filteredProducts = useMemo(() => {
+    let result = [...productArray];
+
+    // Filter by Category
+    if (categoryFilter) {
+      result = result.filter(item => item.category === categoryFilter);
+    }
+
+    // Filter by Location
+    if (locationFilter) {
+      result = result.filter(item => item.location === locationFilter);
+    }
+
+    // Price Sort
+    if (priceSort === "low-high") {
+      result.sort((a, b) => a.pricePerDay - b.pricePerDay);
+    } else if (priceSort === "high-low") {
+      result.sort((a, b) => b.pricePerDay - a.pricePerDay);
+    }
+
+    return result;
+  }, [productArray, categoryFilter, locationFilter, priceSort]);
+
   return (
     <div className='container mx-auto'>
       <Helmet>
@@ -17,16 +54,58 @@ const AllVehicle = () => {
 
       <h1 className='text-5xl font-bold text-center pt-15 pb-10'>All Vehicles</h1>
 
-      {productArray.length === 0 ? (
+      {/* ============================
+          Filtering & Sorting Controls
+      ============================ */}
+      <div className="w-full flex flex-col md:flex-row justify-center gap-4 mb-10 px-4">
+
+        {/* Category Filter */}
+        <select
+          onChange={(e) => setCategoryFilter(e.target.value)}
+          value={categoryFilter}
+          className="border px-4 py-2 rounded"
+        >
+          <option value="">Filter by Category</option>
+          {categories.map((cat, i) => (
+            <option key={i} value={cat}>{cat}</option>
+          ))}
+        </select>
+
+        {/* Location Filter */}
+        <select
+          onChange={(e) => setLocationFilter(e.target.value)}
+          value={locationFilter}
+          className="border px-4 py-2 rounded"
+        >
+          <option value="">Filter by Location</option>
+          {locations.map((loc, i) => (
+            <option key={i} value={loc}>{loc}</option>
+          ))}
+        </select>
+
+        {/* Price Sort */}
+        <select
+          onChange={(e) => setPriceSort(e.target.value)}
+          value={priceSort}
+          className="border px-4 py-2 rounded"
+        >
+          <option value="">Sort by Price</option>
+          <option value="low-high">Low → High</option>
+          <option value="high-low">High → Low</option>
+        </select>
+      </div>
+
+      {/* MAIN CONTENT */}
+      {filteredProducts.length === 0 ? (
         <div className="text-center text-xl text-gray-500 py-20">
           No vehicles found.
         </div>
       ) : (
         <div className="min-h-screen px-4 py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {productArray.map((item) => (
+          {filteredProducts.map((item) => (
             <div
               key={item._id}
-              className="  text-black shadow-xl rounded-2xl overflow-hidden bg-white transition-all duration-300 hover:shadow-2xl"
+              className="text-black shadow-xl rounded-2xl overflow-hidden bg-white transition-all duration-300 hover:shadow-2xl"
             >
               {/* Image Section */}
               <div className="relative p-4 text-color">
