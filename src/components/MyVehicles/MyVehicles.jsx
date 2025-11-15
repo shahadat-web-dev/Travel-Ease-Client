@@ -13,32 +13,18 @@ const MyVehicles = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/vehicles?email=${user.email}`)
+    fetch(`${import.meta.env.VITE_API_URL}/vehicles?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setVehicles(data))
       .catch(() => toast.error("Failed to load vehicles"));
   }, [user?.email]);
 
-  // Delete UI
-  // const handleDelete = (id) => {
-  //   const confirmDelete = confirm("Are you sure you want to delete this vehicle?");
-  //   if (!confirmDelete) return;
 
-  //   fetch(`http://localhost:3000/vehicles/${id}`, {
-  //     method: "DELETE",
-  //   })
-  //     .then((res) => res.json())
-  //     .then(() => {
-  //       setVehicles((prev) => prev.filter((v) => v._id !== id));
-  //       toast.success("Vehicle deleted successfully!");
-  //     })
-  //     .catch(() => toast.error("Delete failed"));
-  // };
 
   const handleDelete = (id) => {
   const confirmDelete = window.confirm("Are you sure you want to delete this vehicle?");
   if (!confirmDelete) return;
-  fetch(`http://localhost:3000/vehicles/${id}`, {
+  fetch(`${import.meta.env.VITE_API_URL}/vehicles/${id}`, {
     method: "DELETE",
   })
     .then((res) => res.json())

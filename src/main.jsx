@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'allVehicle',
-        loader: () => fetch("http://localhost:3000/products"),
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/products`),
         Component: AllVehicle
       },
       {
@@ -64,13 +64,13 @@ const router = createBrowserRouter([
         path: 'update-vehicle/:id',
         element: <UpdateVehicle />,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/vehicles/${params.id}`)
+          fetch(`${import.meta.env.VITE_API_URL}/vehicles/${params.id}`)
       },
       {
         path: '/details/:id',
         element: <Details />,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/vehicles/${params.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/vehicles/${params.id}`),
       },
       {
         path: '/vehicle-details/:id',

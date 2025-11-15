@@ -21,7 +21,7 @@ const UpdateVehicle = () => {
       coverImage: form.coverImage.value,
     };
 
-    fetch(`http://localhost:3000/vehicles/${vehicle._id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/vehicles/${vehicle._id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedVehicle),

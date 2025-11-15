@@ -25,7 +25,7 @@ const AddVehicle = () => {
     };
 
     // ✅ Use correct deployed API URL
-    fetch("http://localhost:3000/vehicles", {
+    fetch(`${import.meta.env.VITE_API_URL}/vehicles`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(vehicle),

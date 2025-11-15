@@ -5,7 +5,7 @@ import LatestProducts from '../LatestProducts/LatestProducts'
 import Footer from '../Footer/Footer';
 import { Helmet } from 'react-helmet-async';
 
-const latestProductsPromise = fetch('http://localhost:3000/latest-products')
+const latestProductsPromise = fetch(`${import.meta.env.VITE_API_URL}/latest-products`)
   .then(res => res.json());
 
 const Home = () => {

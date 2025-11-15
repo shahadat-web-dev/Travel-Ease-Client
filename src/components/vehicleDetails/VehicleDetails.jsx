@@ -15,7 +15,7 @@ const VehicleDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/products/${id}`)
+      .get(`${import.meta.env.VITE_API_URL}/products/${id}`)
       .then((res) => {
         setVehicle(res.data);
         setLoading(false);
@@ -51,7 +51,7 @@ const VehicleDetails = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:3000/bookings`,
+        `${import.meta.env.VITE_API_URL}/bookings`,
         bookingData,
         { headers: { "Content-Type": "application/json" } }
       );
