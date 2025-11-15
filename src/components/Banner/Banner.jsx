@@ -19,18 +19,18 @@ const Banner = () => {
             </span>
           </h1>
 
-          <h2 className="md:text-6xl  text-3xl font-bold py-5">
+          <h2 className="md:text-6xl text-black  text-3xl font-bold py-5">
             Find Affordable Dream <br /> Cars for Rental
           </h2>
 
-          <p className="mt-4 text-lg  sm:text-xl md:text-2xl">
+          <p className="mt-4 text-lg text-black sm:text-xl md:text-2xl">
             Fulfill your automotive fantasies without breaking the bank. Check our <br /> affordable car rentals for an opulent yet economical ride.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-4">
             <NavLink
               to='/allVehicle'
-              className="px-8 py-3 hover:bg-[#FF2C3B] hover:text-white border-2 font-bold rounded-md text-center hover:text-color transition">
+              className="px-8 py-3 bg-red-100 hover:bg-[#FF2C3B] hover:text-white border-2 font-bold rounded-md text-center text-black hover:text-color transition">
               All Vehicle
             </NavLink>
           </div>
