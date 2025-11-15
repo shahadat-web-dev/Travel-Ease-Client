@@ -30,7 +30,7 @@ const Banner = () => {
           <div className="mt-6 flex flex-col sm:flex-row gap-4">
             <NavLink
               to='/allVehicle'
-              className="px-8 py-3 bg-[#FF2C3B] text-white rounded-md text-center font-medium hover:text-color transition">
+              className="px-8 py-3 hover:bg-[#FF2C3B] hover:text-white border-2 font-bold rounded-md text-center hover:text-color transition">
               All Vehicle
             </NavLink>
           </div>

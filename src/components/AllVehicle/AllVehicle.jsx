@@ -6,23 +6,18 @@ import { Helmet } from 'react-helmet-async';
 const AllVehicle = () => {
   const products = useLoaderData();
 
-  // Safety: ensure products is always an array
+  
   const productArray = Array.isArray(products) ? products : [];
 
-  // ============================
-  // Added Filter + Sort States
-  // ============================
+ 
   const [categoryFilter, setCategoryFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [priceSort, setPriceSort] = useState("");
 
-  // Create distinct values for dropdowns
+
   const categories = [...new Set(productArray.map(p => p.category))];
   const locations = [...new Set(productArray.map(p => p.location))];
 
-  // ============================
-  // Filtering & Sorting Logic
-  // ============================
   const filteredProducts = useMemo(() => {
     let result = [...productArray];
 
@@ -54,9 +49,7 @@ const AllVehicle = () => {
 
       <h1 className='text-5xl font-bold text-center pt-15 pb-10'>All Vehicles</h1>
 
-      {/* ============================
-          Filtering & Sorting Controls
-      ============================ */}
+    
       <div className="w-full flex flex-col md:flex-row justify-center gap-4 mb-10 px-4">
 
         {/* Category Filter */}
@@ -105,7 +98,7 @@ const AllVehicle = () => {
           {filteredProducts.map((item) => (
             <div
               key={item._id}
-              className="text-black shadow-xl rounded-2xl overflow-hidden bg-white transition-all duration-300 hover:shadow-2xl"
+              className="text-black shadow-xl rounded-2xl  bg-white transition-all duration-300 hover:shadow-2xl"
             >
               {/* Image Section */}
               <div className="relative p-4 text-color">

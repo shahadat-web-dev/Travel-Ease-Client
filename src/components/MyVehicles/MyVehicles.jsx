@@ -3,6 +3,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router";
 import { format } from "date-fns";
 import { toast, ToastContainer } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 
 const MyVehicles = () => {
@@ -51,6 +52,9 @@ const MyVehicles = () => {
 
   return (
     <div className="min-h-screen p-6 container mx-auto">
+       <Helmet>
+              <title>My Vehicle - TravelEase</title>
+            </Helmet>
       <h2 className="text-2xl font-bold mb-6 text-center">My Vehicles</h2>
 
       {vehicles.length === 0 ? (

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { toast, ToastContainer } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 
 const AddVehicle = () => {
@@ -39,6 +40,9 @@ const AddVehicle = () => {
 
   return (
     <div className="min-h-screen p-6">
+       <Helmet>
+              <title>Add Vehicle - TravelEase</title>
+            </Helmet>
       <h2 className="text-2xl font-bold mb-6 text-center">Add New Vehicle</h2>
 
       <form
